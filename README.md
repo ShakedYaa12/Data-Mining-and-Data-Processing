@@ -2,7 +2,7 @@
 # Project Title: Data Mining and Data Processing
 
 ## Project Description
-"This project focuses on the collection, extraction, and processing of data from various sources. The main objectives are to mine relevant data, clean it, process it, and analyze it for meaningful insights."
+This project focuses on the collection, extraction, and processing of data from various sources. The main objectives are to mine relevant data, clean it, process it, and analyze it for meaningful insights.
 
 ## Features
 """- **Data Collection**: Scraping data from web sources using BeautifulSoup and requests libraries.
@@ -59,4 +59,4 @@
 3. **Run the Jupyter notebooks** to perform data collection, cleaning, analysis, and visualization.
 """
 ## License
-"This project is licensed under the MIT License - see the LICENSE file for details."
+This project is licensed under the MIT License - see the LICENSE file for details.
