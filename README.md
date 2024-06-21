@@ -1,4 +1,4 @@
-### Important note - the project is not finished yet
+Important note - the project is not finished yet
 # Project Title: Data Mining and Data Processing
 
 ## Project Description
