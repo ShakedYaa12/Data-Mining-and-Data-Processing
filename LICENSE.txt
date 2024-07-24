@@ -1,0 +1,5 @@
+Copyright © 2024 Shaked Yaakov, Amit Levi
+
+This project, "Car Price Prediction," is a derivative of "Data Mining and Data Processing" by Shaked Yaakov and Amit Levi, used under CC BY-NC 4.0. 
+"Car Price Prediction" is also licensed under CC BY-NC 4.0 by Shaked Yaakov and Amit Levi.
+
