@@ -1,10 +1,12 @@
 
 **Important note:** The project is not finished yet.
 
-# Project Title: Data Mining and Data Processing
+# Data Mining and Data Processing
+
 
 ## Project Description
 This project is centered on the collection, extraction, processing, and analysis of data from various sources with a specific focus on car price predictions. It encompasses two main phases: data collection and cleaning, followed by advanced data analysis and price prediction using machine learning models.
+
 
 ## Features
 - **Data Collection**: Scraping data from web sources like ad.co.il using BeautifulSoup and requests libraries.
@@ -12,6 +14,7 @@ This project is centered on the collection, extraction, processing, and analysis
 - **Data Transformation**: Normalizing and transforming data into a usable format for analysis.
 - **Data Analysis**: Utilizing Elastic Net regression models to predict car prices based on collected data.
 - **Data Visualization**: Creating visualizations with matplotlib and seaborn to represent findings and model performance.
+
 
 ## Technologies Used
 - **Python**: Primary programming language used for scripting and data analysis.
@@ -28,6 +31,7 @@ This project is centered on the collection, extraction, processing, and analysis
 - **urllib**: Used for URL handling.
 - **re (Regular Expressions)**: Helps in data cleaning by searching for patterns within text.
 
+
 ## Project Structure
 ```plaintext
 data-mining-project/
@@ -38,26 +42,29 @@ data-mining-project/
 │ └── cleaned/
 │
 ├── notebooks/
-│ ├── data_collection.ipynb
-│ ├── data_cleaning.ipynb
-│ ├── data_analysis.ipynb
-│ ├── data_modeling.ipynb
-│ └── data_visualization.ipynb
+│   ├── Part1_Data_Collection_and_Cleaning.ipynb 
+│   └── Part2_Data_Analysis_and_Modeling.ipynb
 │
 ├── models/
 │ └── price_prediction_model.pkl
-│
-├── scripts/
-│ ├── scrape_data.py
-│ ├── clean_data.py
-│ ├── analyze_data.py
-│ ├── model_data.py
-│ └── visualize_data.py
 │
 ├── requirements.txt
 ├── README.md
 └── .gitignore
 ```
+This project is organized to facilitate easy navigation and efficient data management:
+
+- **data/**: Hosts all datasets in three subfolders:
+  - **raw/**: Original data as collected.
+  - **processed/**: Data formatted and preliminarily cleaned.
+  - **cleaned/**: Fully cleaned data ready for analysis.
+
+- **notebooks/**: Contains two Jupyter notebooks:
+  - **Part1_Data_Collection_and_Cleaning.ipynb**: For data collection and initial cleaning.
+  - **Part2_Data_Analysis_and_Modeling.ipynb**: For data analysis and model building.
+
+- **models/**: Stores serialized machine learning models, including a pre-trained price prediction model.
+
 
 ## How to Run
 1. **Clone the repository**:
