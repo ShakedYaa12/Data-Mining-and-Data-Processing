@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>חיזוי מחיר רכב</title>
+    <style>
+        body {
+            background-color: #b3bdc3;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            color: #01579b;
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        form {
+            display: inline-block;
+            text-align: right;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .form-group div {
+            width: 48%;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #01579b;
+        }
+        input, select, textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #b0bec5;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #0288d1;
+            color: white;
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0277bd;
+        }
+        img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        #loader {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: -100px;
+            width: 200px;
+            animation: drive 2s linear forwards;
+        }
+        #loader-text {
+            display: none;
+            position: absolute;
+            top: 60%;
+            left: -100px;
+            width: 200px;
+            animation: drive 2s linear forwards;
+            color: black;
+        }
+        @keyframes drive {
+            from {
+                left: -100px;
+            }
+            to {
+                left: 100%;
+            }
+        }
+        #result {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #01599d;
+        }
+    </style>
+</head>
+<body>
+    <img src="/static/LOGO.jpeg" alt="לוגו אתר">
+    <h1>חיזוי מחיר רכב</h1>
+    <form id="carForm" action="/predict" method="post" onsubmit="showLoader(event)">
+        <div class="form-group">
+            <div>
+                <label for="manufactor">יצרן:</label>
+                <select id="manufactor" name="manufactor" required>
+                    <option value="" disabled selected>בחר יצרן</option>
+                    <option value="טויוטה">טויוטה</option>
+                    <option value="יונדאי">יונדאי</option>
+                    <option value="מאזדה">מאזדה</option>
+                    <option value="קיה">קיה</option>
+                    <option value="סקודה">סקודה</option>
+                    <option value="שברולט">שברולט</option>
+                    <option value="מיצובישי">מיצובישי</option>
+                    <option value="הונדה">הונדה</option>
+                    <option value="רנו">רנו</option>
+                    <option value="פולקסווגן">פולקסווגן</option>
+                    <option value="סיאט">סיאט</option>
+                    <option value="ב.מ.וו">ב.מ.וו</option>
+                    <option value="אאודי">אאודי</option>
+                    <option value="פורד">פורד</option>
+                    <option value="סוזוקי">סוזוקי</option>
+                    <option value="מרצדס">מרצדס</option>
+                    <option value="סיטרואן">סיטרואן</option>
+                    <option value="סובארו">סובארו</option>
+                    <option value="אופל">אופל</option>
+                    <option value="ניסאן">ניסאן</option>
+                    <option value="פיג'ו">פיג'ו</option>
+                    <option value="פיאט">פיאט</option>
+                    <option value="דייהטסו">דייהטסו</option>
+                    <option value="וולוו">וולוו</option>
+                    <option value="טסלה">טסלה</option>
+                    <option value="אלפא רומיאו">אלפא רומיאו</option>
+                    <option value="מיני">מיני</option>
+                    <option value="קרייזלר">קרייזלר</option>
+                    <option value="לקסוס">לקסוס</option>
+                    <option value="יגואר">יגואר</option>
+                    <option value="דאצ'יה">דאצ'יה</option>
+                    <option value="אינפיניטי">אינפיניטי</option>
+                    <option value="ביואיק">ביואיק</option>
+                    <option value="דודג'">דודג'</option>
+                    <option value="סאנגיונג">סאנגיונג</option>
+                    <option value="קאדילק">קאדילק</option>
+                    <option value="אברת'">אברת'</option>
+                    <option value="אם. ג'י. / MG">אם. ג'י. / MG</option>
+                    <option value="פורשה">פורשה</option>
+                    <option value="סמארט">סמארט</option>
+                    <option value="אוטוביאנקי">אוטוביאנקי</option>
+                    <option value="אולדסמוביל">אולדסמוביל</option>
+                    <option value="מזראטי">מזראטי</option>
+                    <option value="לינקולן">לינקולן</option>
+                    <option value="רובר">רובר</option>
+                    <option value="פרארי">פרארי</option>
+                    <option value="לנצ'יה">לנצ'יה</option>
+                    <option value="גרייט וול / G.O">גרייט וול / G.O</option>
+                </select>
+            </div>
+            <div>
+                <label for="year">שנת יצור:</label>
+                <select id="year" name="Year" required>
+                    <option value="" disabled selected>בחר שנת יצור</option>
+                    <script>
+                        for (let year = 1990; year <= 2024; year++) {
+                            document.write('<option value="' + year + '">' + year + '</option>');
+                        }
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label for="model">דגם (בעברית):</label>
+                <input type="text" id="model" name="model" required placeholder="בחר דגם">
+            </div>
+            <div>
+                <label for="hand">יד:</label>
+                <select id="hand" name="Hand" required>
+                    <option value="" disabled selected>בחר יד</option>
+                    <script>
+                        for (let hand = 1; hand <= 10; hand++) {
+                            document.write('<option value="' + hand + '">' + hand + '</option>');
+                        }
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label for="gear">תיבת הילוכים:</label>
+                <select id="gear" name="Gear" required>
+                    <option value="" disabled selected>בחר תיבת הילוכים</option>
+                    <option value="אוטומטית">אוטומטית</option>
+                    <option value="ידנית">ידנית</option>
+                    <option value="טיפטרוניק">טיפטרוניק</option>
+                    <option value="רובוטית">רובוטית</option>
+                </select>
+            </div>
+            <div>
+                <label for="capacity_engine">נפח מנוע:</label>
+                <select id="capacity_engine" name="capacity_Engine" required>
+                    <option value="" disabled selected>בחר נפח מנוע</option>
+                    <option value="800">800</option>
+                    <option value="1000">1000</option>
+                    <script>
+                        for (let capacity = 1100; capacity <= 3200; capacity += 100) {
+                            document.write('<option value="' + capacity + '">' + capacity + '</option>');
+                        }
+                        [3500, 3600, 3800, 4000, 4200, 4500, 4700, 4900, 5000, 5500, 6000].forEach(function(capacity) {
+                            document.write('<option value="' + capacity + '">' + capacity + '</option>');
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label for="engine_type">סוג מנוע:</label>
+                <select id="engine_type" name="Engine_type" required>
+                    <option value="" disabled selected>בחר סוג מנוע</option>
+                    <option value="בנזין">בנזין</option>
+                    <option value="דיזל">דיזל</option>
+                    <option value="גז">גז</option>
+                    <option value="היברידי">היברידי</option>
+                    <option value="חשמלי">חשמלי</option>
+                </select>
+            </div>
+            <div>
+                <label for="prev_ownership">בעלות קודמת:</label>
+                <select id="prev_ownership" name="Prev_ownership" required>
+                    <option value="" disabled selected>בחר בעלות קודמת</option>
+                    <option value="פרטית">פרטית</option>
+                    <option value="אחר">אחר</option>
+                </select>
+            </div>
+        </div>
+
+        <label for="km">ק"מ:</label>
+        <input type="number" id="km" name="Km" required><br><br>
+
+        <label for="description">תיאור:</label>
+        <textarea id="description" name="Description" rows="4" cols="50"></textarea><br><br>
+        
+        <button type="submit">הערך מחיר</button>
+    </form>
+    
+    <img id="loader" src="/static/car-animation.jpeg" alt="בדרך לשמאי רכב...">
+    <div id="loader-text">בדרך לשמאי רכב...</div>
+    <div id="result">המחיר המוערך: <span id="prediction"></span></div>
+
+    <script>
+        function showLoader(event) {
+            event.preventDefault();
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('loader-text').style.display = 'block';
+
+            const formData = new FormData(document.getElementById('carForm'));
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('loader-text').style.display = 'none';
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('prediction').innerText = data.prediction;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
