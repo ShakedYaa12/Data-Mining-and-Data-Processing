@@ -71,12 +71,12 @@ data-mining-project/
 ├── README.md
 └── .gitignore
 ```
-- **app/: Contains the Flask web application and related files.
-  - **templates/: Contains the HTML template for the web application.
-  - **static/: Contains static files such as images for the web application.
-  - **car_data_prep.py: Script for preparing data for model training and prediction.
-  - **model_training.py: Script for training the machine learning model.
-  - **api.py: Flask application to serve the prediction model.
+- **app/**: Contains the Flask web application and related files.
+  - **templates/**: Contains the HTML template for the web application.
+  - **static/**: Contains static files such as images for the web application.
+  - **car_data_prep.py**: Script for preparing data for model training and prediction.
+  - **model_training.py**: Script for training the machine learning model.
+  - **api.py**: Flask application to serve the prediction model.
 - **data/**: Hosts all datasets in three subfolders:
   - **raw/**: Original data as collected.
   - **processed/**: Data formatted and preliminarily cleaned.
