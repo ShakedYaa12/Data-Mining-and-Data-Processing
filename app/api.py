@@ -6,6 +6,8 @@ from car_data_prep import prepare_data
 
 
 app = Flask(__name__)
+
+# Load the pre-trained model
 model = pickle.load(open("./models/trained_model.pkl", 'rb'))
 
 @app.route('/')
@@ -18,18 +20,20 @@ def predict():
                         'Engine_type', 'Prev_ownership', 'Curr_ownership', 'Area', 'City', 'Pic_num', 'Cre_date', 'Repub_date',
                         'Description', 'Color', 'Km', 'Test', 'Supply_score']
 
+    # Collect data from the form
     data = {col: request.form.get(col, None) for col in required_columns}
 
+    # Convert the data into a DataFrame
     features_df = pd.DataFrame([data])
 
-    # המרת ערכים לטיפוסים נכונים
+    # Convert data types to appropriate types
     features_df['Year'] = pd.to_numeric(features_df['Year'], errors='coerce')
     features_df['Hand'] = pd.to_numeric(features_df['Hand'], errors='coerce')
 
-    # עיבוד הנתונים לפני שליחה למודל
+    # Process the data before sending it to the model
     prepared_df = prepare_data(features_df)
 
-    # רשימת כל העמודות המצופה לאחר האנקודד
+    # List of expected columns after encoding
     expected_columns = ['manufactor_אאודי', 'manufactor_אופל', 'manufactor_אלפא רומיאו', 'manufactor_ב.מ.וו',
                         'manufactor_דייהטסו', 'manufactor_הונדה', 'manufactor_וולוו', 'manufactor_טויוטה',
                         'manufactor_יונדאי', 'manufactor_לקסוס', 'manufactor_מאזדה', 'manufactor_מיני',
@@ -85,25 +89,28 @@ def predict():
                         'Prev_ownership_פרטית', 'Year', 'Hand', 'capacity_Engine', 'Km',
                         'Authorized_service', 'KM_Per_Year', 'Engine_Efficiency', 'Vintage_Car']
 
-    # יצירת מילון עם נתונים חדשים
+    # Create a dictionary with default values for new columns
     new_columns = {col: 0 for col in expected_columns}
 
-    # עדכון נתוני ה DataFrame הקיים עם העמודות החסרות
+    # Update the existing DataFrame with any missing columns
     for col in new_columns:
         if col not in prepared_df.columns:
             prepared_df[col] = new_columns[col]
 
-    # סידור העמודות לפי הסדר המצופה
+    # Reorder the columns to match the expected order for pre-trained model
     prepared_df = prepared_df[expected_columns]
 
+    # Predict the car price using the trained model
     prediction = int(model.predict(prepared_df)[0] // 100) * 100
 
-    # setting minimum value
+    # setting minimum value for prediction
     if prediction < 8000:
         prediction = 8000
-        
+    
+    # Format the prediction with commas for readability
     prediction = "{:,}".format(prediction)
 
+    # Return the prediction as JSON response
     return jsonify({'prediction': f"{prediction} ש''ח"})
     
 
