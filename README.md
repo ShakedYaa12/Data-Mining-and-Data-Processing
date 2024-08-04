@@ -45,15 +45,13 @@ This project is centered on the collection, extraction, processing, and analysis
 data-mining-project/
 ├── app
 |   ├── static/
-│     ├── car-animation.jpeg
-│     └── LOGO.jpeg
+│   |   ├── car-animation.jpeg
+│   |   └── LOGO.jpeg
 |   ├── templates/
-│     └── index.html
+│   |   └── index.html
 │   ├── car_data_prep.py
 |   ├── model_training.py
-|   ├── api.py
-│   ├── 
-│   └── 
+|   ├── api.py 
 │
 ├── data/
 │   ├── raw/
