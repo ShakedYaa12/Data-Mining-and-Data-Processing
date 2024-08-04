@@ -1,4 +1,3 @@
----
 
 # Data Mining and Data Processing Project
 
@@ -115,4 +114,3 @@ data-mining-project/
 ## License
 This project is licensed under the CC BY-NC 4.0 License - see the LICENSE file for details.
 
----
