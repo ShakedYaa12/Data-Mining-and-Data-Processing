@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <title>חיזוי מחיר רכב</title>
     <style>
+        /* Basic styling for the page */
         body {
             background-color: #b3bdc3;
             font-family: Arial, sans-serif;
             text-align: center;
             position: relative;
         }
+        /* Styling for the header */
         h1 {
             color: #01579b;
             font-size: 3em;
             margin-bottom: 0.5em;
         }
+        /* Styling for the form */
         form {
             display: inline-block;
             text-align: right;
@@ -23,6 +26,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        /* Styling for form groups */
         .form-group {
             display: flex;
             justify-content: space-between;
@@ -31,12 +35,14 @@
         .form-group div {
             width: 48%;
         }
+        /* Styling for labels */
         label {
             display: block;
             font-weight: bold;
             margin-top: 10px;
             color: #01579b;
         }
+        /* Styling for inputs, selects, and textareas */
         input, select, textarea {
             width: calc(100% - 20px);
             padding: 10px;
@@ -46,6 +52,7 @@
             border-radius: 5px;
             font-size: 1em;
         }
+        /* Styling for the submit button */
         button {
             background-color: #0288d1;
             color: white;
@@ -60,10 +67,12 @@
         button:hover {
             background-color: #0277bd;
         }
+        /* Styling for images */
         img {
             width: 150px;
             margin-bottom: 20px;
         }
+        /* Styling for the loader animation */
         #loader {
             display: none;
             position: absolute;
@@ -72,6 +81,7 @@
             width: 200px;
             animation: drive 2s linear forwards;
         }
+        /* Styling for the loader text */
         #loader-text {
             display: none;
             position: absolute;
@@ -81,6 +91,7 @@
             animation: drive 2s linear forwards;
             color: black;
         }
+        /* Keyframes for the loader animation */
         @keyframes drive {
             from {
                 left: -100px;
@@ -89,6 +100,7 @@
                 left: 100%;
             }
         }
+        /* Styling for the result */
         #result {
             display: none;
             margin-top: 20px;
@@ -98,62 +110,63 @@
     </style>
 </head>
 <body>
+    <!-- Logo -->
     <img src="/static/LOGO.jpeg" alt="לוגו אתר">
     <h1>חיזוי מחיר רכב</h1>
+    <!-- Form for car price prediction -->
     <form id="carForm" action="/predict" method="post" onsubmit="showLoader(event)">
+        <!-- Manufacturer and Year selection -->
         <div class="form-group">
             <div>
                 <label for="manufactor">יצרן:</label>
                 <select id="manufactor" name="manufactor" required>
                     <option value="" disabled selected>בחר יצרן</option>
-                    <option value="טויוטה">טויוטה</option>
-                    <option value="יונדאי">יונדאי</option>
-                    <option value="מאזדה">מאזדה</option>
-                    <option value="קיה">קיה</option>
-                    <option value="סקודה">סקודה</option>
-                    <option value="שברולט">שברולט</option>
-                    <option value="מיצובישי">מיצובישי</option>
-                    <option value="הונדה">הונדה</option>
-                    <option value="רנו">רנו</option>
-                    <option value="פולקסווגן">פולקסווגן</option>
-                    <option value="סיאט">סיאט</option>
-                    <option value="ב.מ.וו">ב.מ.וו</option>
-                    <option value="אאודי">אאודי</option>
-                    <option value="פורד">פורד</option>
-                    <option value="סוזוקי">סוזוקי</option>
-                    <option value="מרצדס">מרצדס</option>
-                    <option value="סיטרואן">סיטרואן</option>
-                    <option value="סובארו">סובארו</option>
-                    <option value="אופל">אופל</option>
-                    <option value="ניסאן">ניסאן</option>
-                    <option value="פיג'ו">פיג'ו</option>
-                    <option value="פיאט">פיאט</option>
-                    <option value="דייהטסו">דייהטסו</option>
-                    <option value="וולוו">וולוו</option>
-                    <option value="טסלה">טסלה</option>
-                    <option value="אלפא רומיאו">אלפא רומיאו</option>
-                    <option value="מיני">מיני</option>
-                    <option value="קרייזלר">קרייזלר</option>
-                    <option value="לקסוס">לקסוס</option>
-                    <option value="יגואר">יגואר</option>
-                    <option value="דאצ'יה">דאצ'יה</option>
-                    <option value="אינפיניטי">אינפיניטי</option>
-                    <option value="ביואיק">ביואיק</option>
-                    <option value="דודג'">דודג'</option>
-                    <option value="סאנגיונג">סאנגיונג</option>
-                    <option value="קאדילק">קאדילק</option>
                     <option value="אברת'">אברת'</option>
-                    <option value="אם. ג'י. / MG">אם. ג'י. / MG</option>
-                    <option value="פורשה">פורשה</option>
-                    <option value="סמארט">סמארט</option>
                     <option value="אוטוביאנקי">אוטוביאנקי</option>
                     <option value="אולדסמוביל">אולדסמוביל</option>
-                    <option value="מזראטי">מזראטי</option>
-                    <option value="לינקולן">לינקולן</option>
-                    <option value="רובר">רובר</option>
-                    <option value="פרארי">פרארי</option>
+                    <option value="אופל">אופל</option>
+                    <option value="אאודי">אאודי</option>
+                    <option value="אינפיניטי">אינפיניטי</option>
+                    <option value="אלפא רומיאו">אלפא רומיאו</option>
+                    <option value="אם. ג'י. / MG">אם. ג'י. / MG</option>
+                    <option value="ביואיק">ביואיק</option>
+                    <option value="ב.מ.וו">ב.מ.וו</option>
+                    <option value="דאצ'יה">דאצ'יה</option>
+                    <option value="דודג'">דודג'</option>
+                    <option value="דייהטסו">דייהטסו</option>
+                    <option value="הונדה">הונדה</option>
+                    <option value="וולוו">וולוו</option>
+                    <option value="טויוטה">טויוטה</option>
+                    <option value="טסלה">טסלה</option>
+                    <option value="יגואר">יגואר</option>
+                    <option value="יונדאי">יונדאי</option>
+                    <option value="לקסוס">לקסוס</option>
                     <option value="לנצ'יה">לנצ'יה</option>
-                    <option value="גרייט וול / G.O">גרייט וול / G.O</option>
+                    <option value="לינקולן">לינקולן</option>
+                    <option value="מאזדה">מאזדה</option>
+                    <option value="מיני">מיני</option>
+                    <option value="מיצובישי">מיצובישי</option>
+                    <option value="מזראטי">מזראטי</option>
+                    <option value="מרצדס">מרצדס</option>
+                    <option value="ניסאן">ניסאן</option>
+                    <option value="סאנגיונג">סאנגיונג</option>
+                    <option value="סיאט">סיאט</option>
+                    <option value="סובארו">סובארו</option>
+                    <option value="סוזוקי">סוזוקי</option>
+                    <option value="סיטרואן">סיטרואן</option>
+                    <option value="סמארט">סמארט</option>
+                    <option value="סקודה">סקודה</option>
+                    <option value="פולקסווגן">פולקסווגן</option>
+                    <option value="פורד">פורד</option>
+                    <option value="פיג'ו">פיג'ו</option>
+                    <option value="פיאט">פיאט</option>
+                    <option value="פורשה">פורשה</option>
+                    <option value="קאדילק">קאדילק</option>
+                    <option value="קיה">קיה</option>
+                    <option value="קרייזלר">קרייזלר</option>
+                    <option value="רובר">רובר</option>
+                    <option value="רנו">רנו</option>
+                    <option value="שברולט">שברולט</option>
                 </select>
             </div>
             <div>
@@ -168,7 +181,8 @@
                 </select>
             </div>
         </div>
-
+        
+        <!-- Model and Hand selection -->
         <div class="form-group">
             <div>
                 <label for="model">דגם (בעברית):</label>
@@ -186,7 +200,8 @@
                 </select>
             </div>
         </div>
-
+        
+        <!-- Gear and Engine capacity selection -->
         <div class="form-group">
             <div>
                 <label for="gear">תיבת הילוכים:</label>
@@ -216,6 +231,7 @@
             </div>
         </div>
 
+        <!-- Engine type and previous ownership selection -->
         <div class="form-group">
             <div>
                 <label for="engine_type">סוג מנוע:</label>
@@ -238,6 +254,7 @@
             </div>
         </div>
 
+        <!-- Kilometer and description input -->
         <label for="km">ק"מ:</label>
         <input type="number" id="km" name="Km" required><br><br>
 
