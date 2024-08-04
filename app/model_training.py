@@ -33,10 +33,14 @@ def forcast(df):
     
     return best_model
 
-
+# Load the processed dataset
 df = pd.read_csv("./data/processed/part2-allCars.csv")
 
+# Prepare the data for training
 df = prepare_data(df)
+
+# Train the model
 model = forcast(df)
 
+# Save the trained model to a file
 pickle.dump(model, open("/models/trained_model.pkl","wb"))
